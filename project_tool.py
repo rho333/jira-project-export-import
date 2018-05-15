@@ -43,7 +43,6 @@ if operation == "export":
             'assignee': {'name': issue.fields.assignee.name} if issue.fields.assignee else None,
             'description': issue.fields.description,
             'priority': {'id': issue.fields.priority.id},
-            'status': {'name': issue.fields.status.name},
             'issuetype': {'name': issue.fields.issuetype.name},
             'comments': None
         }
@@ -69,7 +68,6 @@ elif operation == "import":
         comments = issue_dict['comments']
         del issue_dict['old_key']
         del issue_dict['comments']
-        del issue_dict['status']
         
         issue_dict['project'] = project_key
         new_issue = jira_instance.create_issue(fields=issue_dict)
